@@ -1,0 +1,102 @@
+
+# Environment variables
+.env.local
+.env
+.env.*
+!.env.example
+
+# Dependency directories
+node_modules/
+miniprogram/node_modules/
+
+# Build output
+dist/
+build/
+
+# IDE configurations
+.vscode/
+.idea/
+.codebuddy/
+.codeflicker/
+.trae/
+*.swp
+CODEBUDDY.md
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+
+# WeChat Mini Program specific
+miniprogram/.eslintcache
+miniprogram/.DS_Store
+miniprogram/project.config.json.local
+miniprogram/miniprogram_npm/
+
+# Local Netlify folder
+.netlify
+
+# Editor directories and files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+project.private.config.json
