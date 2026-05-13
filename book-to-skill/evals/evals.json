@@ -1,0 +1,33 @@
+{
+  "skill_name": "book-to-skill",
+  "description": "将方法论书籍转换为可复用 Skill 的元 Skill",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "gtd-book-conversion",
+      "prompt": "我上传了一本《Getting Things Done》的 PDF，请帮我把它转换成一个 Skill",
+      "expected_output": "生成 getting-things-done Skill",
+      "files": [
+        "mock_gtd.json"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "atomic-habits-extraction",
+      "prompt": "请分析这本《Atomic Habits》的 PDF，提取出养成习惯的方法论",
+      "expected_output": "生成 atomic-habits Skill",
+      "files": [
+        "mock_atomic_habits.json"
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "deep-work-methodology",
+      "prompt": "把这本书变成 skill，我想学习如何进行深度工作",
+      "expected_output": "生成 deep-work Skill",
+      "files": [
+        "mock_deep_work.json"
+      ]
+    }
+  ]
+}

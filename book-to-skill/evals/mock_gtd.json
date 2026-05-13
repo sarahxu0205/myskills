@@ -1,0 +1,324 @@
+{
+  "book_title": "Getting Things Done",
+  "book_author": "David Allen",
+  "skill_name": "getting-things-done",
+  "q1_book_positioning": {
+    "problem_solved": "任务管理",
+    "target_audience": "测试用户",
+    "book_type": "方法论/工具书",
+    "key_benefits": [
+      "收益1",
+      "收益2"
+    ]
+  },
+  "q2_method_steps": {
+    "overview": "Getting Things Done 方法概述",
+    "steps": [
+      {
+        "name": "收集 (Capture)",
+        "description": "将所有吸引你注意力的事情收集到收件箱",
+        "actions": [
+          "使用物理或数字收件箱",
+          "记录所有任务、想法、承诺",
+          "不要试图在收集时处理"
+        ],
+        "dependencies": "无"
+      },
+      {
+        "name": "理清 (Clarify)",
+        "description": "处理收件箱，决定每项任务的具体行动",
+        "actions": [
+          "这是什么？是否需要行动？",
+          "如果2分钟内能完成，立即执行",
+          "否则，决定下一步行动",
+          "委托他人或延迟处理"
+        ],
+        "dependencies": "收集"
+      },
+      {
+        "name": "组织 (Organize)",
+        "description": "将任务分类到合适的清单中",
+        "actions": [
+          "放入项目清单（多步骤任务）",
+          "放入下一步行动清单",
+          "设置日历提醒",
+          "放入等待清单（委托他人）",
+          "放入参考资料"
+        ],
+        "dependencies": "理清"
+      }
+    ]
+  },
+  "q3_core_rules": {
+    "core_rules": [
+      "大脑是用来思考，不是用来记忆的",
+      "如果2分钟内能完成，立即执行",
+      "每个项目必须有明确的下一步行动",
+      "定期回顾是系统成功的关键",
+      "保持收件箱清空"
+    ],
+    "values": [
+      "心智如水 - 保持清晰和灵活",
+      "掌控和视角 - 同时保持对细节和全局的掌控"
+    ]
+  },
+  "q4_warnings": {
+    "warnings": [
+      "不要在收集阶段试图处理任务",
+      "不要让系统变得过于复杂",
+      "不要跳过每周回顾",
+      "不要把任务只留在脑子里"
+    ],
+    "risks": [
+      "系统过于复杂导致放弃",
+      "只收集不处理导致积压",
+      "回顾不及时导致系统失效"
+    ],
+    "avoidance_tips": [
+      "保持简单，从基本流程开始",
+      "建立固定的处理时间",
+      "设置每周回顾的提醒"
+    ]
+  },
+  "q5_key_questions": {
+    "key_questions": [
+      "这是什么？",
+      "是否需要行动？",
+      "下一步行动是什么？",
+      "2分钟内能完成吗？",
+      "我是最佳执行人选吗？"
+    ],
+    "reflection_points": [
+      "我的系统是否值得我信赖？",
+      "我是否清空了大脑？",
+      "我是否定期回顾？"
+    ]
+  },
+  "q6_applicable_scenarios": {
+    "applicable_scenarios": [
+      "工作任务管理",
+      "个人项目管理",
+      "创意工作流程",
+      "多角色生活管理",
+      "高压工作环境"
+    ],
+    "inapplicable_scenarios": [
+      "简单的单任务场景",
+      "完全固定的工作流程",
+      "不需要任何规划的情况"
+    ],
+    "boundary_conditions": [
+      "需要一定的自律性",
+      "需要定期维护系统",
+      "需要习惯养成期"
+    ]
+  },
+  "q7_prerequisites": {
+    "knowledge_prep": [
+      "了解基本的任务管理概念",
+      "理解项目和行动的区别"
+    ],
+    "tools_prep": [
+      "收件箱（物理或数字）",
+      "清单管理工具",
+      "日历",
+      "参考资料存储"
+    ],
+    "environment_prep": [
+      "安静的处理时间",
+      "固定的回顾时间"
+    ],
+    "mindset_prep": [
+      "愿意改变工作习惯",
+      "接受暂时不适应",
+      "承诺维护系统"
+    ]
+  },
+  "q8_expected_output": {
+    "direct_output": "清空的收件箱、明确的下一步行动清单、可信赖的任务管理系统",
+    "milestone_outputs": [
+      "所有任务收集到系统中",
+      "收件箱处理完毕",
+      "项目都有明确的下一步行动",
+      "建立每周回顾习惯"
+    ],
+    "final_result": "一个可信赖的个人生产力系统，大脑清晰、压力减轻、执行力提升",
+    "success_criteria": [
+      "大脑感觉清晰",
+      "不会遗忘重要事项",
+      "能快速找到下一步行动",
+      "压力水平降低"
+    ]
+  },
+  "q9_validation": {
+    "validation_description": "通过每周回顾和日常执行来验证系统是否正常工作",
+    "checklist": [
+      "收件箱是否清空？",
+      "所有项目都有下一步行动？",
+      "等待清单是否跟进？",
+      "日历是否最新？",
+      "参考资料是否整理？"
+    ],
+    "quality_metrics": [
+      "收件箱处理频率",
+      "每周回顾完成率",
+      "任务完成率"
+    ],
+    "success_indicators": [
+      "压力减轻",
+      "执行力提升",
+      "不再遗漏承诺"
+    ]
+  },
+  "q10_core_principles": {
+    "theoretical_basis": "基于认知科学和心理学的研究成果，特别是关于工作记忆、注意力管理和执行功能的研究",
+    "why_it_works": "通过外部化记忆（将任务放在系统而非大脑中），释放大脑的认知资源用于创造性思考；通过明确的下一步行动降低启动阻力；通过定期回顾建立可信赖的系统",
+    "scientific_principles": [
+      "工作记忆有限性",
+      "蔡格尼克效应（未完成任务占用心理资源）",
+      "执行意图（Implementation Intentions）"
+    ],
+    "empirical_basis": "基于 David Allen 20多年咨询经验，帮助数万人改善生产力"
+  },
+  "q11_resources": {
+    "tools": [
+      "收件箱（物理或数字）",
+      "清单管理工具（纸质或APP）",
+      "日历",
+      "文件夹系统"
+    ],
+    "templates": [
+      "项目清单模板",
+      "下一步行动清单模板",
+      "每周回顾检查清单",
+      "等待清单模板"
+    ],
+    "cases": [
+      "高管工作流案例",
+      "创意人士工作流案例",
+      "创业者工作流案例"
+    ],
+    "exercises": [
+      "大脑清空练习",
+      "项目规划练习",
+      "每周回顾练习"
+    ],
+    "further_reading": [
+      "《搞定II》",
+      "《搞定III》",
+      "GTD 官方网站和播客"
+    ]
+  },
+  "q12_learning_path": {
+    "beginner_steps": [
+      "设置收件箱",
+      "开始收集所有任务",
+      "学习基本的理清流程",
+      "建立简单的清单系统"
+    ],
+    "advanced_steps": [
+      "优化清单结构",
+      "建立每周回顾习惯",
+      "整合到日常工作流",
+      "处理复杂项目"
+    ],
+    "practice_plan": "第1周：设置系统并开始收集；第2-4周：建立处理习惯；第2个月：完善回顾流程；第3个月：优化和个性化",
+    "milestones": [
+      "完成大脑清空",
+      "建立可信赖的系统",
+      "养成每周回顾习惯",
+      "系统成为第二天性"
+    ]
+  },
+  "q13_variations": {
+    "common_variations": [
+      "数字GTD（使用APP）",
+      "纸质GTD（使用纸质工具）",
+      "混合GTD（数字+纸质）"
+    ],
+    "scenario_adjustments": [
+      "团队协作调整",
+      "创意工作调整",
+      "高压环境调整"
+    ],
+    "flexible_applications": [
+      "简化版GTD",
+      "GTD + 番茄工作法",
+      "GTD + 看板方法"
+    ],
+    "combinations": [
+      "与番茄工作法结合",
+      "与看板方法结合",
+      "与时间块方法结合"
+    ]
+  },
+  "q14_advanced_tips": {
+    "advanced_techniques": [
+      {
+        "name": "自然规划模型",
+        "description": "用于复杂项目规划的五步模型：目的和原则、愿景、头脑风暴、组织、下一步行动"
+      },
+      {
+        "name": "高度视角",
+        "description": "从六个高度审视人生和工作：跑道、项目、关注领域、目标、愿景、目的和原则"
+      }
+    ],
+    "optimization_directions": [
+      "优化清单分类",
+      "建立情境清单",
+      "完善参考资料系统"
+    ],
+    "efficiency_tips": [
+      "批量处理相似任务",
+      "使用模板加速规划",
+      "建立快速收集习惯"
+    ],
+    "deep_applications": [
+      "团队GTD实施",
+      "GTD与战略规划结合",
+      "GTD与人生设计结合"
+    ]
+  },
+  "q15_ai_assistance": {
+    "ai_suitable_steps": [
+      "任务分类和标签建议",
+      "下一步行动生成",
+      "项目规划辅助",
+      "回顾清单生成"
+    ],
+    "ai_tools_recommendations": [
+      "使用AI助手进行任务分解",
+      "使用AI生成项目模板",
+      "使用AI进行优先级建议"
+    ],
+    "human_ai_collaboration": "人类负责决策和判断，AI负责信息整理、建议生成和提醒",
+    "automation_opportunities": [
+      "自动收集邮件任务",
+      "定期生成回顾报告",
+      "智能任务分类"
+    ]
+  },
+  "q16_skill_usage": {
+    "typical_scenarios": [
+      "用户感到 overwhelmed，需要整理任务",
+      "用户开始新项目，需要规划",
+      "用户进行每周回顾",
+      "用户需要确定下一步行动",
+      "用户想要清空大脑"
+    ],
+    "trigger_conditions": [
+      "用户提到 GTD 或 Getting Things Done",
+      "用户说感到 overwhelmed 或压力大",
+      "用户需要任务管理方法",
+      "用户上传 GTD 相关 PDF",
+      "用户询问如何管理任务/项目"
+    ],
+    "input_parameters": [
+      "用户当前的任务列表",
+      "用户的项目信息",
+      "用户的情境约束（时间、精力、地点）"
+    ],
+    "output_format": "根据场景提供相应的 GTD 流程指导、清单模板或行动建议",
+    "usage_frequency": "高频率 - 可用于日常任务管理"
+  }
+}

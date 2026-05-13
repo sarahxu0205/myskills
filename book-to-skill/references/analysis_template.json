@@ -1,0 +1,250 @@
+{
+  "_template_description": "16个问题分析模板 - 用于指导从书籍中提取方法论信息",
+  "_usage": "基于PDF提取的内容，系统性地回答以下16个问题",
+  "_usage_instructions": [
+    "基于 PDF 提取的文本内容填写此模板",
+    "所有标记为 [必填] 的字段必须填写，不可留空",
+    "列表类型字段至少提供 2 个条目",
+    "参考 sample_analysis.json 了解期望的填写质量",
+    "内容应具体、可操作，避免泛泛而谈"
+  ],
+
+  "book_title": "书籍标题",
+  "book_author": "书籍作者",
+  "book_publisher": "出版社（可选）",
+  "book_publish_date": "出版日期（可选）",
+
+  "q1_book_positioning": {
+    "problem_solved": "[必填] 用一句话概括：帮助[谁]通过[什么方式]实现[什么目标]。示例：帮助知识工作者通过外部化记忆来清空大脑、减轻压力",
+    "target_audience": "[必填] 具体描述适合的人群特征。示例：知识工作者、管理者、创意人士",
+    "book_type": "[必填] 从以下选择：方法论/工具书/理论著作/案例集/混合型",
+    "key_benefits": [
+      "核心收益1",
+      "核心收益2",
+      "核心收益3"
+    ]
+  },
+
+  "q2_method_steps": {
+    "overview": "[必填] 用2-3句话概括方法的整体流程和核心逻辑",
+    "steps": [
+      {
+        "name": "[必填] 步骤简短名称（2-6个字），如'收集'、'理清'",
+        "description": "[必填] 用1-2句话描述这个步骤做什么",
+        "actions": "[必填] 每个操作应是用户可以直接执行的具体动作",
+        "dependencies": "依赖的前置步骤"
+      }
+    ],
+    "flowchart": "流程图描述（可选）"
+  },
+
+  "q3_core_rules": {
+    "core_rules": "[必填] 作者反复强调的原则，用祈使句表述。示例：大脑是用来思考的，不是用来记忆的",
+    "values": [
+      "价值观1",
+      "价值观2"
+    ]
+  },
+
+  "q4_warnings": {
+    "warnings": "[必填] 具体的错误场景+正确做法。示例：不要在收集阶段试图处理任务",
+    "risks": [
+      "风险1",
+      "风险2"
+    ],
+    "avoidance_tips": [
+      "避坑建议1",
+      "避坑建议2"
+    ]
+  },
+
+  "q5_key_questions": {
+    "key_questions": "[必填] 书中反复出现或特别强调的提问",
+    "reflection_points": [
+      "反思点1",
+      "反思点2"
+    ]
+  },
+
+  "q6_applicable_scenarios": {
+    "applicable_scenarios": [
+      "适用场景1",
+      "适用场景2",
+      "适用场景3"
+    ],
+    "inapplicable_scenarios": [
+      "不适用场景1",
+      "不适用场景2"
+    ],
+    "boundary_conditions": [
+      "边界条件1",
+      "边界条件2"
+    ]
+  },
+
+  "q7_prerequisites": {
+    "knowledge_prep": [
+      "知识准备1",
+      "知识准备2"
+    ],
+    "tools_prep": [
+      "工具准备1",
+      "工具准备2"
+    ],
+    "environment_prep": [
+      "环境准备1",
+      "环境准备2"
+    ],
+    "mindset_prep": [
+      "心态准备1",
+      "心态准备2"
+    ]
+  },
+
+  "q8_expected_output": {
+    "direct_output": "直接产出是什么",
+    "milestone_outputs": [
+      "阶段性产出1",
+      "阶段性产出2"
+    ],
+    "final_result": "最终成果",
+    "success_criteria": [
+      "成功标准1",
+      "成功标准2"
+    ]
+  },
+
+  "q9_validation": {
+    "validation_description": "如何判断方法被正确执行",
+    "checklist": [
+      "检验项1",
+      "检验项2",
+      "检验项3"
+    ],
+    "quality_metrics": [
+      "质量指标1",
+      "质量指标2"
+    ],
+    "success_indicators": [
+      "成功指标1",
+      "成功指标2"
+    ]
+  },
+
+  "q10_core_principles": {
+    "theoretical_basis": "[必填] 方法背后的理论依据或学科基础",
+    "why_it_works": "[必填] 解释方法有效的逻辑链条",
+    "scientific_principles": [
+      "科学原理1",
+      "科学原理2"
+    ],
+    "empirical_basis": "经验基础"
+  },
+
+  "q11_resources": {
+    "tools": [
+      "工具1",
+      "工具2"
+    ],
+    "templates": [
+      "模板1",
+      "模板2"
+    ],
+    "cases": [
+      "案例1",
+      "案例2"
+    ],
+    "exercises": [
+      "练习1",
+      "练习2"
+    ],
+    "further_reading": [
+      "延伸阅读1",
+      "延伸阅读2"
+    ]
+  },
+
+  "q12_learning_path": {
+    "beginner_steps": [
+      "入门步骤1",
+      "入门步骤2"
+    ],
+    "advanced_steps": [
+      "进阶步骤1",
+      "进阶步骤2"
+    ],
+    "practice_plan": "练习计划",
+    "milestones": [
+      "里程碑1",
+      "里程碑2",
+      "里程碑3"
+    ]
+  },
+
+  "q13_variations": {
+    "common_variations": [
+      "常见变体1",
+      "常见变体2"
+    ],
+    "scenario_adjustments": [
+      "场景调整1",
+      "场景调整2"
+    ],
+    "flexible_applications": [
+      "灵活应用1",
+      "灵活应用2"
+    ],
+    "combinations": [
+      "组合使用1",
+      "组合使用2"
+    ]
+  },
+
+  "q14_advanced_tips": {
+    "advanced_techniques": [
+      {
+        "name": "进阶技巧名称",
+        "description": "技巧描述"
+      }
+    ],
+    "optimization_directions": [
+      "优化方向1",
+      "优化方向2"
+    ],
+    "efficiency_tips": [
+      "效率提升技巧1",
+      "效率提升技巧2"
+    ],
+    "deep_applications": [
+      "深度应用1",
+      "深度应用2"
+    ]
+  },
+
+  "q15_ai_assistance": {
+    "ai_suitable_steps": [
+      "适合AI的步骤1",
+      "适合AI的步骤2"
+    ],
+    "ai_tools_recommendations": [
+      "AI工具建议1",
+      "AI工具建议2"
+    ],
+    "human_ai_collaboration": "人机协作模式描述",
+    "automation_opportunities": [
+      "自动化机会1",
+      "自动化机会2"
+    ]
+  },
+
+  "q16_skill_usage": {
+    "typical_scenarios": "[必填] 用户最可能在什么情境下调用生成的 Skill",
+    "trigger_conditions": "[必填] 什么用户行为或表述应触发此 Skill",
+    "input_parameters": [
+      "输入参数1",
+      "输入参数2"
+    ],
+    "output_format": "输出格式描述",
+    "usage_frequency": "预计使用频率"
+  }
+}
