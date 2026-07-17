@@ -4,6 +4,24 @@
 
 ## 技能列表
 
+| 名字 | 一句话功能描述 |
+|---|---|
+| [miniprogram-performance-optimizer（小程序性能优化）](miniprogram-performance-optimizer) | 识别小程序代码中的性能瓶颈，提供基于微信官方最佳实践的优化建议 |
+| [rapid-idea-check（快速想法验证）](rapid-idea-check) | 快速判断一个产品想法是否值得快速落地，输出直接犀利的判断结论 |
+| [discovery-interview-prep（用户探索访谈准备）](discovery-interview-prep) | 规划用户探索访谈，准备有针对性的问题，避免常见偏见 |
+| [jtbd-demand-mining（JTBD 需求挖掘）](jtbd-demand-mining) | 使用 JTBD 框架挖掘用户真实需求，识别真正的痛点和收益 |
+| [pre-mortem-analyst（预死亡分析）](pre-mortem-analyst) | 假设项目已经失败，逆向分析失败原因，打破乐观偏见 |
+| [miniprogram-audit-checker（小程序审核自查）](miniprogram-audit-checker) | 帮助开发者在小程序提审前进行自我排查，检查是否符合微信审核要求 |
+| [app-review-analyst（应用评论分析）](app-review-analyst) | 利用 AppInsightMCP 工具分析应用商店评论数据，挖掘用户需求 |
+| [book-to-skill（Book to Skill 元技能）](book-to-skill) | 将方法论书籍转换为可复用的结构化 Skill 文件 |
+| [ab-testing-design（AB 测试方案设计）](ab-testing-design) | 帮助设计科学高效的 AB 测试方案，从实验设计到结果分析 |
+| [ansoff-matrix-strategy（安索夫矩阵增长策略）](ansoff-matrix-strategy) | 提供四象限战略分析与增长方案设计，帮助企业突破增长瓶颈 |
+| [hit-ideation-assistant（HIT 启发式构思）](hit-ideation-assistant) | 通过跨域类比和特性转移生成突破性创意 |
+| [podcast-extractor（播客内容提取）](podcast-extractor) | 从播客文字稿等长文本中提取结构化洞察，输出单文件 HTML 页面 |
+| [wxa-skills-polish（小程序 AI Skill 二轮优化）](wxa-skills-polish) | 对生成的小程序 AI SKILL 初稿进行标准化二轮优化 |
+| [scamper-innovation-expert（SCAMPER 创新思维）](scamper-innovation-expert) | 运用 SCAMPER 七维法引导产品、服务或流程创新 |
+| [nine-window-innovation（九窗法创新）](nine-window-innovation) | 通过 3×3 分析矩阵系统性地发现产品创新和模式突破机会 |
+
 ### 1. 小程序性能优化技能 (miniprogram-performance-optimizer)
 
 **功能描述：** 识别小程序代码中的性能瓶颈，并提供基于微信官方最佳实践的优化建议。覆盖启动性能和运行时性能两大核心领域。
