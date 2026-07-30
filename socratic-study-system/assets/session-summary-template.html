@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习摘要 - {{DATE}} {{CHAPTER}} {{UNIT}}</title>
+  <style>
+    /* =====================================================
+       学习摘要报告模板 - 精编杂志风 Editorial Digest
+       所有样式内嵌，不依赖外部资源
+       ===================================================== */
+
+    :root {
+      --bg-page: #f7f3e9;           /* 温暖米白底 */
+      --bg-card: #ffffff;           /* 卡片纯白 */
+      --text-primary: #1c1917;      /* 近黑主文字 */
+      --text-secondary: #57534e;    /* 暖灰次要文字 */
+      --text-muted: #a8a29e;        /* 弱化文字 */
+      --accent: #c2410c;            /* 赤陶橙，主强调色 */
+      --accent-light: #fff7ed;      /* 浅橙背景 */
+      --success: #15803d;           /* 深绿 */
+      --success-bg: #f0fdf4;
+      --warning: #b45309;           /* 琥珀 */
+      --warning-bg: #fffbeb;
+      --danger: #b91c1c;            /* 深红 */
+      --danger-bg: #fef2f2;
+      --border: #e7e5e4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Avenir Next", "Avenir", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.7;
+      padding: 40px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Hero 头部 ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: end;
+      padding-bottom: 32px;
+      margin-bottom: 40px;
+      border-bottom: 6px solid var(--accent);
+    }
+
+    .chapter-number {
+      font-family: "Didot", "Baskerville", "Hoefler Text", serif;
+      font-size: 120px;
+      line-height: 0.85;
+      color: var(--accent);
+      opacity: 0.9;
+      font-weight: 700;
+    }
+
+    .hero-content {
+      padding-bottom: 8px;
+    }
+
+    .hero-content .kicker {
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-content h1 {
+      font-family: "Didot", "Baskerville", "Hoefler Text", serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .hero-meta span {
+      border-left: 2px solid var(--border);
+      padding-left: 12px;
+    }
+
+    /* ---------- 通用区块 ---------- */
+    .section {
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.3s; }
+    .section:nth-child(5) { animation-delay: 0.4s; }
+    .section:nth-child(6) { animation-delay: 0.5s; }
+
+    .section-label {
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: "Didot", "Baskerville", "Hoefler Text", serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    /* ---------- 核心收获 ---------- */
+    .takeaway-list {
+      list-style: none;
+      counter-reset: takeaway;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 8px 28px 0;
+    }
+
+    .takeaway-list li {
+      position: relative;
+      padding-left: 64px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
+
+    .takeaway-list li:first-child {
+      border-top: none;
+    }
+
+    .takeaway-list li::before {
+      counter-increment: takeaway;
+      content: counter(takeaway, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 18px;
+      font-family: "Didot", "Baskerville", "Hoefler Text", serif;
+      font-size: 36px;
+      color: var(--accent);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    /* ---------- 掌握状态 ---------- */
+    .mastery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mastery-item {
+      padding: 24px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mastery-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .mastery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mastery-label {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+    }
+
+    .mastery-badge {
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 5px 12px;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    .status-green .mastery-badge {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .status-yellow .mastery-badge {
+      background: var(--warning-bg);
+      color: var(--warning);
+    }
+
+    .status-red .mastery-badge {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: var(--border);
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      animation: growBar 1s ease forwards;
+    }
+
+    .status-green .progress-fill { background: var(--success); }
+    .status-yellow .progress-fill { background: var(--warning); }
+    .status-red .progress-fill { background: var(--danger); }
+
+    .mastery-note {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ---------- 待复习项 ---------- */
+    .review-box {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 28px;
+    }
+
+    .review-box ul {
+      list-style: none;
+    }
+
+    .review-box li {
+      position: relative;
+      padding-left: 24px;
+      color: var(--text-primary);
+      font-size: 16px;
+    }
+
+    .review-box li:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    .review-box li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ---------- 下节课预告 ---------- */
+    .next-card {
+      background: var(--text-primary);
+      color: var(--bg-page);
+      padding: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .next-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    }
+
+    .next-card .section-title {
+      color: var(--bg-page);
+      margin-bottom: 10px;
+    }
+
+    .next-card .next-topic {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--bg-card);
+      margin-bottom: 8px;
+    }
+
+    .next-card .next-prep {
+      color: rgba(247, 243, 233, 0.8);
+      font-size: 15px;
+    }
+
+    .next-arrow {
+      font-size: 36px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ---------- 页脚 ---------- */
+    footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      position: relative;
+      font-weight: 500;
+    }
+
+    footer a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    footer a:hover::after {
+      width: 100%;
+    }
+
+    /* ---------- 动画 ---------- */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes growBar {
+      from { width: 0; }
+      to { width: var(--target-width); }
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 640px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding-bottom: 24px;
+        margin-bottom: 32px;
+      }
+
+      .chapter-number {
+        font-size: 80px;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .takeaway-list li {
+        padding-left: 48px;
+      }
+
+      .takeaway-list li::before {
+        font-size: 28px;
+      }
+
+      .next-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .next-arrow {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero 头部：章节号 + 标题元信息 -->
+    <header class="hero">
+      <div class="chapter-number">{{CHAPTER_NUMBER}}</div>
+      <div class="hero-content">
+        <div class="kicker">Session Summary / 学习摘要</div>
+        <h1>{{TOPIC}}</h1>
+        <div class="hero-meta">
+          <span>{{DATE}}</span>
+          <span>{{CHAPTER}} · {{UNIT}}</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- 核心收获 -->
+    <section class="section">
+      <div class="section-label">Key Takeaways</div>
+      <h2 class="section-title">本节课核心收获</h2>
+      <ol class="takeaway-list">
+        <li>{{TAKEAWAY_1}}</li>
+        <li>{{TAKEAWAY_2}}</li>
+        <li>{{TAKEAWAY_3}}</li>
+      </ol>
+    </section>
+
+    <!-- 掌握状态 -->
+    <section class="section">
+      <div class="section-label">Mastery Status</div>
+      <h2 class="section-title">掌握状态</h2>
+      <div class="mastery-list">
+        <!-- 已掌握项 -->
+        <div class="mastery-item status-green">
+          <div class="mastery-header">
+            <span class="mastery-label">{{ITEM_GREEN_1}}</span>
+            <span class="mastery-badge">已掌握</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="--target-width: {{ITEM_GREEN_1_PCT}}%;"></div>
+          </div>
+          <p class="mastery-note">{{ITEM_GREEN_1_NOTE}}</p>
+        </div>
+
+        <!-- 需强化项 -->
+        <div class="mastery-item status-yellow">
+          <div class="mastery-header">
+            <span class="mastery-label">{{ITEM_YELLOW_1}}</span>
+            <span class="mastery-badge">需强化</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="--target-width: {{ITEM_YELLOW_1_PCT}}%;"></div>
+          </div>
+          <p class="mastery-note">{{ITEM_YELLOW_1_NOTE}}</p>
+        </div>
+
+        <!-- 重点突破项 -->
+        <div class="mastery-item status-red">
+          <div class="mastery-header">
+            <span class="mastery-label">{{ITEM_RED_1}}</span>
+            <span class="mastery-badge">重点突破</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="--target-width: {{ITEM_RED_1_PCT}}%;"></div>
+          </div>
+          <p class="mastery-note">{{ITEM_RED_1_NOTE}}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 待复习项 -->
+    <section class="section">
+      <div class="section-label">Review Queue</div>
+      <h2 class="section-title">待复习项</h2>
+      <div class="review-box">
+        <ul>
+          <li>{{REVIEW_ITEM_1}}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 下节课预告 -->
+    <section class="section">
+      <div class="section-label">Coming Up Next</div>
+      <h2 class="section-title">下节课预告</h2>
+      <div class="next-card">
+        <div>
+          <div class="next-topic">{{NEXT_CHAPTER}} · {{NEXT_UNIT}}：{{NEXT_TOPIC}}</div>
+          <p class="next-prep">{{NEXT_PREP_QUESTION}}</p>
+        </div>
+        <div class="next-arrow">→</div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+      <p>历史摘要归档在 <a href="session_summary_archive.html">session_summary_archive.html</a></p>
+    </footer>
+  </div>
+</body>
+</html>
