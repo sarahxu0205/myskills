@@ -16,7 +16,7 @@
 | 面试后 | Offer 谈判 / 进度追踪 | `offer-negotiation` |
 
 ## 各 Skill 自带 `references/`
-为支持单 Skill 独立使用，每个 Skill 现已自带其所需的 `references/` 文件（不再是统一共享目录），避免重复定义、保证口径一致：
+为支持单 Skill 独立使用，每个 Skill 现已自带其所需的 `references/` 文件，避免重复定义、保证口径一致：
 - `redlines.md`：诚信与边界红线（不造假、不泄密、不贬低、样例标注）。
 - `star-framework.md`：STAR/STAR-L 表达与评分框架。
 - `salary-bands.md`：薪资行情参考框架（结构 + 示例锚点）。

@@ -23,6 +23,7 @@
 | [nine-window-innovation（九窗法创新）](#15-九窗法创新顾问技能-nine-window-innovation) | 通过 3×3 分析矩阵系统性地发现产品创新和模式突破机会 |
 | [beijing-agent-opportunity-assistant（北京智能体政策机会助手）](#16-北京智能体政策机会助手技能-beijing-agent-opportunity-assistant) | 基于北京智能体政策十条，帮助普通人识别可落地的智能体产业机会 |
 | [socratic-study-system（苏格拉底式学习系统）](#17-苏格拉底式学习系统技能-socratic-study-system) | 基于苏格拉底式教学法与角色陪伴，为学习资料生成可运行的对话式学习系统 |
+| [interview（面试全流程 Skill 套件）](#18-面试全流程-skill-套件-interview) | 覆盖简历优化、公司背调、面试备战、模拟面试、复盘、Offer 谈判的全流程面试辅导套件 |
 
 ### 1. 小程序性能优化技能 (miniprogram-performance-optimizer)
 
@@ -334,5 +335,24 @@
 - 提到「AI 家教」「AI tutor」「苏格拉底式教学」「让学习更沉浸」
 - 希望用对话式教学替代被动阅读
 - 需要角色陪伴提升学习动力
+
+### 18. 面试全流程 Skill 套件 (interview)
+
+**功能描述：** 一套面向求职/面试场景的协同 Skill 集合，由 1 个总控编排 Skill + 6 个专项 Skill 组成，覆盖面试全生命周期 12 个能力点。总控 `interview-coach` 按"投递前→面试前→面试后"生命周期自动路由到对应专项 Skill，保证环节闭环。
+
+**子技能：**
+- `interview-coach`（总控编排）：按"投递前→面试前→面试后"生命周期路由到专项 Skill，保证环节闭环
+- `resume-optimizer`（简历优化）：JD 诊断、简历优化、项目补全，严守诚信红线
+- `company-research`（公司背调）：快速梳理目标公司业务、融资、薪资、面经与避坑点
+- `interview-prep`（面试备战）：预测题库、答题话术策略、打磨自我介绍
+- `mock-interview`（模拟面试）：多角色模拟面试官，实战对练并给评分与改进建议
+- `interview-review`（面试复盘）：复盘真实面试表现，生成高质量反向提问清单
+- `offer-negotiation`（Offer 谈判）：薪资拆解、谈判话术、多 Offer 决策、投递进度管理
+
+**使用场景：**
+- 用户需要面试辅导、求职全流程支持
+- 从零开始准备面试，需要简历优化到 Offer 谈判的完整闭环
+- 需要模拟面试实战对练或面试后复盘改进
+- 需要公司背调、薪资谈判或投递进度管理
 
 ---
