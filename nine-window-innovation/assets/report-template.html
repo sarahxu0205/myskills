@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>九窗法创新分析报告 · 示例模板</title>
+<style>
+  /* ============ 设计变量 ============ */
+  :root {
+    --ink: #1c2430;
+    --muted: #67707d;
+    --paper: #f6f4ef;
+    --card: #ffffff;
+    --line: #e3dfd6;
+    --accent: #1f5f5b;
+    --accent-soft: #eaf2f0;
+    --past: #5b7183;
+    --past-soft: #eef2f5;
+    --future: #a86b22;
+    --future-soft: #fbf2e5;
+    --danger: #a8432f;
+    --danger-soft: #fbeeea;
+    --warn: #a86b22;
+    --ok: #2f6b4f;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(28, 36, 48, .04), 0 8px 24px rgba(28, 36, 48, .05);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 28px 56px;
+  }
+
+  /* ============ 头部 ============ */
+  .hero {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 34px 34px 28px;
+    box-shadow: var(--shadow);
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: 10px 0 6px;
+    font-size: 30px;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+  }
+
+  .subtitle {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .boundary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .boundary div {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .boundary b {
+    flex: 0 0 78px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* ============ 通用区块 ============ */
+  section {
+    margin-top: 34px;
+  }
+
+  section > h2 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    letter-spacing: -.01em;
+  }
+
+  .section-note {
+    margin: -6px 0 14px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* ============ 结论摘要 ============ */
+  .summary {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: sum;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .summary li {
+    counter-increment: sum;
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 18px 18px 54px;
+    box-shadow: var(--shadow);
+    font-size: 14px;
+  }
+
+  .summary li::before {
+    content: counter(sum);
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ============ 九窗矩阵 ============ */
+  .matrix {
+    display: grid;
+    grid-template-columns: 84px repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .col-head,
+  .row-head,
+  .corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--muted);
+    padding: 8px 6px;
+  }
+
+  .col-head {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+
+  .row-head {
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  .row-head.past { background: var(--past); }
+  .row-head.now { background: var(--accent); }
+  .row-head.future { background: var(--future); }
+
+  .cell {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--line);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    min-height: 150px;
+  }
+
+  .cell.past { border-top-color: var(--past); background: var(--past-soft); }
+  .cell.now { border-top-color: var(--accent); background: var(--accent-soft); }
+  .cell.future { border-top-color: var(--future); background: var(--future-soft); }
+
+  .cell-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .win {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--muted);
+  }
+
+  .cell h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+  }
+
+  .cell p {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  .clue {
+    padding-top: 8px;
+    border-top: 1px dashed rgba(28, 36, 48, .16);
+    color: var(--accent) !important;
+    font-weight: 600;
+  }
+
+  /* ============ 标注 ============ */
+  .tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .tag.fact { background: #eceff2; color: #4c5a66; }
+  .tag.infer { background: #fbf1d8; color: #8a6014; }
+  .tag.assume { background: #f8e5e0; color: var(--danger); }
+  .tag.certain { background: #e5f0e9; color: var(--ok); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ============ 跨窗洞察 ============ */
+  .insights {
+    display: grid;
+    gap: 12px;
+  }
+
+  .insight {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .insight.tension {
+    border-left-color: var(--danger);
+    background: linear-gradient(0deg, var(--danger-soft), var(--danger-soft));
+    border-color: #efd4cd;
+  }
+
+  .pair {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .pair span {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 8px;
+    color: var(--ink);
+  }
+
+  .insight p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .insight strong { color: var(--danger); }
+
+  /* ============ 机会卡 ============ */
+  .opps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .opp {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .opp-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .type {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .type.fn { background: #e8f0f7; color: #2f5f86; }
+  .type.ux { background: #e6f3f1; color: var(--accent); }
+  .type.biz { background: #efeaf6; color: #5f4a83; }
+  .type.cross { background: #f5eee5; color: #7d5a33; }
+
+  .priority {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .priority.high { background: var(--danger-soft); color: var(--danger); }
+  .priority.mid { background: #fbf1d8; color: var(--warn); }
+  .priority.low { background: #eceff2; color: var(--muted); }
+
+  .score {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: var(--accent);
+  }
+
+  .opp h3 { margin: 0; font-size: 16px; }
+
+  .opp p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  .chain {
+    font-size: 11.5px;
+    color: var(--muted);
+    background: #f7f6f2;
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    padding: 7px 9px;
+    line-height: 1.6;
+  }
+
+  .bars { display: grid; gap: 5px; }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 62px 1fr 20px;
+    gap: 8px;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .bar {
+    height: 6px;
+    background: #ece9e2;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .bar span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  .opp-foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+
+  /* ============ 表格 ============ */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 720px;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  th {
+    background: #faf8f4;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  .table-note {
+    margin: 10px 2px 0;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+
+  /* ============ TOP3 ============ */
+  .top3 { display: grid; gap: 14px; }
+
+  .plan {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 22px;
+  }
+
+  .plan-side h3 { margin: 6px 0 6px; font-size: 17px; }
+  .plan-side p { margin: 0; font-size: 12.5px; color: var(--muted); }
+
+  .plan-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 22px;
+  }
+
+  .plan-item { font-size: 13px; }
+
+  .plan-item b {
+    display: block;
+    font-size: 11.5px;
+    color: var(--muted);
+    font-weight: 700;
+    letter-spacing: .03em;
+    margin-bottom: 2px;
+  }
+
+  .plan-item.falsify {
+    grid-column: 1 / -1;
+    background: var(--danger-soft);
+    border: 1px solid #efd4cd;
+    border-radius: 8px;
+    padding: 9px 11px;
+  }
+
+  .plan-item.falsify b { color: var(--danger); }
+
+  /* ============ 路线图 ============ */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .phase {
+    padding: 18px 20px;
+    border-right: 1px solid var(--line);
+  }
+
+  .phase:last-child { border-right: none; }
+
+  .phase .days {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--accent);
+  }
+
+  .phase h3 { margin: 4px 0 8px; font-size: 15px; }
+
+  .phase ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
+  .phase li { margin-bottom: 4px; }
+
+  .phase .kpi {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--line);
+    font-size: 12px;
+    color: var(--ink);
+  }
+
+  /* ============ 页脚 ============ */
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  /* ============ 响应式 ============ */
+  @media (max-width: 900px) {
+    .page { padding: 24px 16px 40px; }
+    .hero { padding: 24px 20px; }
+    .hero h1 { font-size: 24px; }
+    .summary,
+    .opps,
+    .roadmap { grid-template-columns: 1fr; }
+    .boundary { grid-template-columns: 1fr; }
+    .matrix { grid-template-columns: 1fr; }
+    .col-head, .corner { display: none; }
+    .row-head {
+      justify-content: flex-start;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .cell::before {
+      content: attr(data-level);
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .plan { grid-template-columns: 1fr; gap: 14px; }
+    .plan-body { grid-template-columns: 1fr; }
+    .phase { border-right: none; border-bottom: 1px solid var(--line); }
+    .phase:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 600px) {
+    body { font-size: 14px; }
+    .hero h1 { font-size: 21px; }
+    .opp, .plan, .insight, .cell { break-inside: avoid; }
+  }
+
+  /* ============ 打印 ============ */
+  @media print {
+    @page { size: A4; margin: 14mm; }
+    body { background: #fff; font-size: 11pt; }
+    .page { max-width: none; padding: 0; }
+    .hero, .summary li, .cell, .insight, .opp, .plan, .roadmap, .table-wrap {
+      box-shadow: none;
+    }
+    section { margin-top: 16px; }
+    section > h2 { break-after: avoid; }
+    .hero { padding: 18px 20px; }
+    .hero h1 { font-size: 20pt; margin: 6px 0 4px; }
+    .subtitle { font-size: 9pt; margin-bottom: 10px; }
+    .meta { margin-bottom: 12px; }
+    .boundary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; padding-top: 10px; font-size: 8.5pt; }
+    .summary, .opps, .roadmap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .summary li { padding: 10px 12px 10px 38px; font-size: 9pt; }
+    .summary li::before { left: 12px; top: 10px; width: 18px; height: 18px; font-size: 9px; }
+    .matrix { grid-template-columns: 64px repeat(3, 1fr); gap: 6px; break-inside: avoid; }
+    .col-head, .corner { display: flex; font-size: 8pt; padding: 5px; }
+    .cell { min-height: 0; padding: 9px 10px; }
+    .cell h3 { font-size: 10pt; margin-bottom: 4px; }
+    .cell p { font-size: 8.5pt; margin-bottom: 4px; line-height: 1.5; }
+    .clue { padding-top: 5px; }
+    .win { font-size: 7.5pt; }
+    .tag { font-size: 7.5pt; padding: 0 5px; }
+    .cell::before { display: none; }
+    .row-head { justify-content: center; }
+    .plan { grid-template-columns: 210px 1fr; }
+    .plan-body { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .phase { border-right: 1px solid var(--line); border-bottom: none; }
+    .phase:last-child { border-right: none; }
+    .table-wrap { overflow: visible; }
+    table { min-width: 0; font-size: 9pt; }
+    th, td { padding: 6px 8px; }
+    .cell, .insight, .opp, .plan, .phase, .summary li { break-inside: avoid; }
+    footer { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<!-- 生成模式说明：
+     快速版：保留头部、结论摘要、矩阵、洞察、机会、第一步行动；删除评分表、TOP3 与完整 90 天计划。
+     标准/深度：保留全部区块；深度版追加情景分析与 12 个月路线图。
+     聚焦版：保留头部、矩阵、洞察、验证计划（90 天）；删除评分表与 TOP3。
+     假设版：保留头部、矩阵、假设与缺口；删除评分表、TOP3 与 90 天计划。
+     生成时请替换全部示例数据。 -->
+<div class="page">
+
+  <!-- ==================== 头部 ==================== -->
+  <header class="hero">
+    <div class="eyebrow">九窗法创新分析</div>
+    <h1>社区团购 App 的下一增长曲线</h1>
+    <p class="subtitle">示例数据 · 仅用于展示报告结构，生成时请全部替换</p>
+    <div class="meta">
+      <span class="chip">信息档位：进阶级</span>
+      <span class="chip">行业变化速度：中变</span>
+      <span class="chip">过去 3 年 / 未来 3 年</span>
+      <span class="chip">2026-11-16</span>
+    </div>
+    <div class="boundary">
+      <div><b>系统</b><span>面向家庭用户的社区团购 App，完成“计划性采购 + 次日自提”</span></div>
+      <div><b>焦点子系统</b><span>结算流程、选品与场景组合</span></div>
+      <div><b>直接超系统</b><span>本地履约能力、平台流量规则、社区团购监管</span></div>
+      <div><b>关键假设</b><span>转化下滑主因是首单决策变难，而非价格或供给【假设·待验证】</span></div>
+    </div>
+  </header>
+
+  <!-- ==================== 结论摘要 ==================== -->
+  <section>
+    <h2>结论摘要</h2>
+    <ol class="summary">
+      <li>过去靠“低价 + 次日自提”建立优势，但用户参照系已变成即时零售，“省时间”比“省钱”更能解释首单流失。</li>
+      <li>最高优先级是两步结算：改动小、可两周验证，直接作用于支付前弃购，属于快赢。</li>
+      <li>结构性机会是用“家庭一周菜单”重组选品，把价格竞争转为计划性采购的场景价值。</li>
+    </ol>
+  </section>
+
+  <!-- ==================== 九窗矩阵 ==================== -->
+  <section>
+    <h2>九窗矩阵</h2>
+    <p class="section-note">每格只放一句话结论；详细事实、变化与含义见逐窗分析。未来窗标注确定性。</p>
+    <div class="matrix">
+      <div class="corner">时间/层级</div>
+      <div class="col-head">子系统 · 功能/模块</div>
+      <div class="col-head">系统 · 产品整体</div>
+      <div class="col-head">超系统 · 行业/生态</div>
+
+      <div class="row-head past">过去</div>
+      <article class="cell past" data-level="过去 · 子系统">
+        <div class="cell-top"><span class="win">窗口 1</span><span class="tag infer">推断</span></div>
+        <h3>功能演进史</h3>
+        <p>从微信群接龙迁移到 App，核心路径仍是“浏览—加购—次日自提”。</p>
+        <p class="clue">机会线索：结算链路可重构</p>
+      </article>
+      <article class="cell past" data-level="过去 · 系统">
+        <div class="cell-top"><span class="win">窗口 2</span><span class="tag fact">事实</span></div>
+        <h3>产品演进史</h3>
+        <p>靠“低价 + 次日达”打开市场，用户心智是“便宜、囤货”。</p>
+        <p class="clue">机会线索：低价之外的价值锚点</p>
+      </article>
+      <article class="cell past" data-level="过去 · 超系统">
+        <div class="cell-top"><span class="win">窗口 3</span><span class="tag fact">事实</span></div>
+        <h3>行业演进史</h3>
+        <p>补贴退坡与监管收紧，社区团购的价格战空间收窄。</p>
+        <p class="clue">机会线索：从价格转向效率</p>
+      </article>
+
+      <div class="row-head now">现在</div>
+      <article class="cell now" data-level="现在 · 子系统">
+        <div class="cell-top"><span class="win">窗口 4</span><span class="tag infer">推断</span></div>
+        <h3>功能现状</h3>
+        <p>结算需选自提点、时段、优惠券，共 7 步，弃购集中在支付前。</p>
+        <p class="clue">机会线索：两步结算</p>
+      </article>
+      <article class="cell now" data-level="现在 · 系统">
+        <div class="cell-top"><span class="win">窗口 5</span><span class="tag fact">事实</span></div>
+        <h3>产品现状</h3>
+        <p>转化率 5.2%→3.4%，但复购频次稳定，问题在新客首单决策。</p>
+        <p class="clue">机会线索：先修首次转化</p>
+      </article>
+      <article class="cell now" data-level="现在 · 超系统">
+        <div class="cell-top"><span class="win">窗口 6</span><span class="tag fact">事实</span></div>
+        <h3>行业现状</h3>
+        <p>即时零售 30 分钟达成为新参照，用户对“次日自提”的耐心下降。</p>
+        <p class="clue">机会线索：重新定义“计划性采购”</p>
+      </article>
+
+      <div class="row-head future">未来</div>
+      <article class="cell future" data-level="未来 · 子系统">
+        <div class="cell-top"><span class="win">窗口 7</span><span class="tag infer">推断</span><span class="tag certain">确定性高</span></div>
+        <h3>功能创新</h3>
+        <p>地址与自提点记忆 + 一键复购，可把结算压缩为两步。</p>
+        <p class="clue">机会线索：快赢实验</p>
+      </article>
+      <article class="cell future" data-level="未来 · 系统">
+        <div class="cell-top"><span class="win">窗口 8</span><span class="tag infer">推断</span><span class="tag certain">确定性中</span></div>
+        <h3>产品创新</h3>
+        <p>从“低价商品列表”转向“家庭一周菜单”场景包。</p>
+        <p class="clue">机会线索：场景化组合购</p>
+      </article>
+      <article class="cell future" data-level="未来 · 超系统">
+        <div class="cell-top"><span class="win">窗口 9</span><span class="tag infer">推断</span><span class="tag certain">确定性中</span></div>
+        <h3>生态创新</h3>
+        <p>本地生活平台开放履约能力，社区团购可接入补足时效短板。</p>
+        <p class="clue">机会线索：即时履约合作</p>
+      </article>
+    </div>
+    <div class="legend">
+      <span><span class="tag fact">事实</span> 可验证的数据或事件</span>
+      <span><span class="tag infer">推断</span> 基于经验的合理推测</span>
+      <span><span class="tag assume">假设·待验证</span> 需实验确认的前提</span>
+      <span><span class="tag certain">确定性</span> 未来判断的可信程度</span>
+    </div>
+  </section>
+
+  <!-- ==================== 跨窗洞察 ==================== -->
+  <section>
+    <h2>跨窗洞察与矛盾</h2>
+    <div class="insights">
+      <article class="insight tension">
+        <div class="pair"><span>窗口 2</span> × <span>窗口 5</span> × <span>窗口 6</span></div>
+        <p><strong>矛盾：</strong>过去的优势“低价 + 次日自提”（2），在即时零售改变预期后（6），反而让结算与选品显得“慢且麻烦”（5）。优势正在变成首单阻力。</p>
+      </article>
+      <article class="insight">
+        <div class="pair"><span>窗口 3</span> → <span>窗口 5</span> → <span>窗口 8</span></div>
+        <p><strong>时间链：</strong>补贴退坡（3）让价格优势收窄（5），继续打低价没有未来；必须用“省时间、少决策”重建价值，这指向场景化菜单（8）。</p>
+      </article>
+      <article class="insight">
+        <div class="pair"><span>窗口 6</span> → <span>窗口 5</span> → <span>窗口 4</span></div>
+        <p><strong>层级链：</strong>即时零售抬高了时效预期（6），使“次日自提”必须被重新定义为“计划性采购”（5），因此结算与选品应围绕一次买齐一周来简化（4）。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 机会卡 ==================== -->
+  <section>
+    <h2>创新机会</h2>
+    <p class="section-note">每个机会至少两个来源窗口；评分与置信度用于排序，不替代验证。</p>
+    <div class="opps">
+      <article class="opp">
+        <div class="opp-head">
+          <div class="badges">
+            <span class="type ux">体验创新</span>
+            <span class="priority high">高优先级</span>
+          </div>
+          <span class="score">4.4</span>
+        </div>
+        <h3>两步结算</h3>
+        <p>把结算压缩为“确认自提点 + 支付”，其余信息由系统记忆与默认值完成。</p>
+        <div class="chain">窗口 4 弃购集中支付前 → 窗口 6 时效预期变化 → 窗口 7 一键复购可行</div>
+        <div class="bars">
+          <div class="bar-row"><span>用户价值</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>技术可行性</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>商业价值</span><div class="bar"><span style="width:80%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>竞争优势</span><div class="bar"><span style="width:60%"></span></div><b>3</b></div>
+          <div class="bar-row"><span>资源匹配</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+        </div>
+        <div class="opp-foot"><span>置信度：高</span><span>最小验证：2 周 A/B</span></div>
+      </article>
+
+      <article class="opp">
+        <div class="opp-head">
+          <div class="badges">
+            <span class="type fn">功能创新</span>
+            <span class="priority mid">中优先级</span>
+          </div>
+          <span class="score">3.8</span>
+        </div>
+        <h3>家庭一周菜单</h3>
+        <p>按家庭人数与口味生成一周菜谱，一键加入对应商品，减少逐件挑选。</p>
+        <div class="chain">窗口 2 低价心智 → 窗口 5 首单决策难 → 窗口 8 场景化组合</div>
+        <div class="bars">
+          <div class="bar-row"><span>用户价值</span><div class="bar"><span style="width:80%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>技术可行性</span><div class="bar"><span style="width:60%"></span></div><b>3</b></div>
+          <div class="bar-row"><span>商业价值</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>竞争优势</span><div class="bar"><span style="width:80%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>资源匹配</span><div class="bar"><span style="width:60%"></span></div><b>3</b></div>
+        </div>
+        <div class="opp-foot"><span>置信度：中</span><span>最小验证：1 个品类试点</span></div>
+      </article>
+
+      <article class="opp">
+        <div class="opp-head">
+          <div class="badges">
+            <span class="type cross">跨界创新</span>
+            <span class="priority mid">中优先级</span>
+          </div>
+          <span class="score">3.6</span>
+        </div>
+        <h3>接入本地即时履约</h3>
+        <p>与本地生活平台合作，为部分高频商品提供当日达，补齐时效短板。</p>
+        <div class="chain">窗口 6 即时零售预期 → 窗口 9 履约能力开放 → 窗口 8 产品形态扩展</div>
+        <div class="bars">
+          <div class="bar-row"><span>用户价值</span><div class="bar"><span style="width:80%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>技术可行性</span><div class="bar"><span style="width:40%"></span></div><b>2</b></div>
+          <div class="bar-row"><span>商业价值</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>竞争优势</span><div class="bar"><span style="width:100%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>资源匹配</span><div class="bar"><span style="width:40%"></span></div><b>2</b></div>
+        </div>
+        <div class="opp-foot"><span>置信度：低</span><span>最小验证：1 个城市谈 1 家</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 评分表 ==================== -->
+  <section>
+    <h2>优先级评估</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>创新机会</th><th>用户价值</th><th>技术可行性</th><th>商业价值</th><th>竞争优势</th><th>资源匹配</th><th>综合得分</th><th>置信度</th><th>优先级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>两步结算</td><td>5</td><td>5</td><td>4</td><td>3</td><td>5</td><td><b>4.4</b></td><td>高</td><td>高</td>
+          </tr>
+          <tr>
+            <td>家庭一周菜单</td><td>4</td><td>3</td><td>5</td><td>4</td><td>3</td><td><b>3.8</b></td><td>中</td><td>中</td>
+          </tr>
+          <tr>
+            <td>接入本地即时履约</td><td>4</td><td>2</td><td>5</td><td>5</td><td>2</td><td><b>3.6</b></td><td>低</td><td>中</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">门槛判定：两步结算综合 4.4、用户价值 5、技术可行性 5、4 个维度 ≥4 → 高优先级成立。即时履约置信度低，因此以“验证优先”方式进入 TOP3：先完成合作可行性验证，再投入建设。</p>
+  </section>
+
+  <!-- ==================== TOP3 ==================== -->
+  <section>
+    <h2>TOP3 落地方案</h2>
+    <div class="top3">
+      <article class="plan">
+        <div class="plan-side">
+          <span class="priority high">TOP 1 · 快赢</span>
+          <h3>两步结算</h3>
+          <p>来源窗口 4 · 6 · 7<br>置信度：高</p>
+        </div>
+        <div class="plan-body">
+          <div class="plan-item"><b>核心价值</b>降低支付前弃购，直接修复首单转化。</div>
+          <div class="plan-item"><b>目标用户/场景</b>首次下单、已加购但未支付的家庭用户。</div>
+          <div class="plan-item"><b>MVP</b>自提点与时段记忆 + 默认优惠券 + 一键支付。</div>
+          <div class="plan-item"><b>资源需求</b>前端 2 人 × 2 周，后端 1 人 × 1 周。</div>
+          <div class="plan-item"><b>成功指标</b>支付转化率 +3pp；护栏：退款率、客单价不下降。</div>
+          <div class="plan-item"><b>主要风险</b>默认选项导致错选自提点，引发客诉。</div>
+          <div class="plan-item falsify"><b>证伪条件</b>若 4 周内支付转化率未提升 3 个百分点，则回滚，仅保留自提点记忆。</div>
+        </div>
+      </article>
+
+      <article class="plan">
+        <div class="plan-side">
+          <span class="priority mid">TOP 2 · 结构性</span>
+          <h3>家庭一周菜单</h3>
+          <p>来源窗口 2 · 5 · 8<br>置信度：中</p>
+        </div>
+        <div class="plan-body">
+          <div class="plan-item"><b>核心价值</b>把“挑便宜货”转为“一次买齐一周”，降低决策成本。</div>
+          <div class="plan-item"><b>目标用户/场景</b>有孩子的家庭，周末计划性采购。</div>
+          <div class="plan-item"><b>MVP</b>3 套固定菜单 + 一键加购，先覆盖 1 个品类。</div>
+          <div class="plan-item"><b>资源需求</b>选品 1 人 + 运营 1 人 + 前端 2 人 × 6 周。</div>
+          <div class="plan-item"><b>成功指标</b>套餐加购率 ≥8%；次月复购率 +5pp。</div>
+          <div class="plan-item"><b>主要风险</b>菜单与库存不匹配，导致履约失败。</div>
+          <div class="plan-item falsify"><b>证伪条件</b>若 6 周内套餐加购率低于 5%，则暂停扩展，回到单品推荐。</div>
+        </div>
+      </article>
+
+      <article class="plan">
+        <div class="plan-side">
+          <span class="priority mid">TOP 3 · 探索性</span>
+          <h3>接入本地即时履约</h3>
+          <p>验证优先 · 来源窗口 6 · 8 · 9<br>置信度：低</p>
+        </div>
+        <div class="plan-body">
+          <div class="plan-item"><b>核心价值</b>用合作补足时效短板，进入“即时 + 计划”混合场景。</div>
+          <div class="plan-item"><b>目标用户/场景</b>临时缺货、对时效敏感的城市家庭。</div>
+          <div class="plan-item"><b>MVP</b>1 个城市、10 个 SKU、1 家本地履约方。</div>
+          <div class="plan-item"><b>资源需求</b>商务 1 人 + 运营 1 人，先谈合作不建能力。</div>
+          <div class="plan-item"><b>成功指标</b>履约准时率 ≥95%；单均履约成本可接受。</div>
+          <div class="plan-item"><b>主要风险</b>平台自建同类能力，合作关系不稳定。</div>
+          <div class="plan-item falsify"><b>证伪条件</b>若 8 周内无法谈成 1 家合作，或单均成本高于毛利，则放弃自建，仅保留导流合作。</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 90 天计划 ==================== -->
+  <section>
+    <h2>90 天验证计划</h2>
+    <div class="roadmap">
+      <div class="phase">
+        <div class="days">0-30 天</div>
+        <h3>先修首单</h3>
+        <ul>
+          <li>两步结算 A/B 实验上线</li>
+          <li>埋点补齐支付前流失节点</li>
+          <li>菜单套餐选品与定价</li>
+        </ul>
+        <div class="kpi">验收：支付转化率 +3pp</div>
+      </div>
+      <div class="phase">
+        <div class="days">31-60 天</div>
+        <h3>验证场景</h3>
+        <ul>
+          <li>3 套菜单套餐灰度</li>
+          <li>1 个城市谈即时履约合作</li>
+          <li>复盘结算实验，决定全量或回滚</li>
+        </ul>
+        <div class="kpi">验收：套餐加购率 ≥8%</div>
+      </div>
+      <div class="phase">
+        <div class="days">61-90 天</div>
+        <h3>决定加码</h3>
+        <ul>
+          <li>按数据决定菜单是否扩展品类</li>
+          <li>履约合作试点或退出</li>
+          <li>形成下一季度路线图</li>
+        </ul>
+        <div class="kpi">验收：明确加码 / 维持 / 退出</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 假设与缺口 ==================== -->
+  <section>
+    <h2>假设与信息缺口</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>假设 / 缺口</th><th>影响</th><th>验证方式</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>转化下滑主因是首单决策变难</td><td>决定两步结算是否为最高优先级</td><td>支付前漏斗埋点 + 10 位用户访谈</td></tr>
+          <tr><td>家庭用户愿意为“菜单组合”支付溢价</td><td>决定场景包能否成立</td><td>3 套套餐的小范围预售测试</td></tr>
+          <tr><td>本地履约方愿意开放合作</td><td>决定探索性机会是否继续</td><td>1 个城市 2 周商务洽谈</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <span>九窗法创新分析 · 信息完整度：进阶级 · 生成时间：2026-11-16</span>
+    <span>标注为【推断】【假设·待验证】的内容需进一步核实；示例数据请勿直接引用。</span>
+  </footer>
+
+</div>
+</body>
+</html>
