@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 替换点：标题改为实际对象名 -->
+<title>SCAMPER 创新方案 | 职场新人 Excel 数据分析课</title>
+<style>
+  /* ========== 设计变量：主色、层次色、级别色 ========== */
+  :root{
+    --ink:#1b1f24;
+    --ink-2:#4a5260;
+    --ink-3:#78808d;
+    --bg:#f5f6f8;
+    --card:#ffffff;
+    --line:#e3e6ea;
+    --brand:#2f5bd7;
+    --brand-soft:#eaf0ff;
+    --func:#2f5bd7;
+    --flow:#0e8a8a;
+    --biz:#7a4fd6;
+    --ok:#1f9254;
+    --warn:#b7791f;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(16,24,40,.05),0 8px 24px -12px rgba(16,24,40,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:15px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:1080px;margin:0 auto;padding:40px 24px 72px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  h1,h2,h3,h4{margin:0;line-height:1.35}
+  h1{font-size:28px;letter-spacing:-.02em}
+  h2{font-size:19px;letter-spacing:-.01em}
+  h3{font-size:15px}
+  p{margin:0}
+
+  /* ========== 头部 ========== */
+  .hero{padding:28px 28px 24px;border-bottom:3px solid var(--brand)}
+  .eyebrow{font-size:12px;letter-spacing:.12em;color:var(--brand);font-weight:600;margin-bottom:8px}
+  .hero h1{margin-bottom:14px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:12.5px;color:var(--ink-2);background:#f3f4f6;
+    border:1px solid var(--line);border-radius:999px;padding:4px 11px;
+  }
+  .chip b{color:var(--ink);font-weight:600}
+
+  /* ========== 结论三条 ========== */
+  .conclusions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+  .concl{padding:18px;border-left:3px solid var(--brand);background:var(--brand-soft);border-radius:10px}
+  .concl .k{font-size:12px;font-weight:700;color:var(--brand);letter-spacing:.08em;margin-bottom:6px}
+  .concl p{font-size:14px;color:var(--ink)}
+
+  /* ========== 通用区块 ========== */
+  section{margin-top:34px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+  .sec-num{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.1em}
+
+  /* ========== 现状解构 ========== */
+  .status{padding:22px 24px}
+  .status .row{display:flex;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  .status .row:last-child{border-bottom:0}
+  .status .tag{flex:0 0 74px;font-size:12.5px;font-weight:600;color:var(--ink-3)}
+  .status .row p{flex:1;font-size:14px}
+  .fail{color:#a4342a;font-weight:600}
+
+  /* ========== 七维卡片 ========== */
+  .dims{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .dim{padding:18px 20px}
+  .dim-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+  .letter{
+    width:26px;height:26px;border-radius:7px;background:var(--brand);color:#fff;
+    display:grid;place-items:center;font-size:13px;font-weight:700;flex:0 0 auto;
+  }
+  .dim-head h3{font-size:15px}
+  .dim ul{margin:0;padding-left:0;list-style:none}
+  .dim li{padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+  .dim li:first-child{border-top:0}
+  .idea-id{font-weight:700;color:var(--brand);margin-right:6px;font-variant-numeric:tabular-nums}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+  .tag-lv{font-size:11.5px;padding:1px 7px;border-radius:5px;font-weight:600;border:1px solid}
+  .lv-func{color:var(--func);border-color:#c9d7fb;background:#f2f6ff}
+  .lv-flow{color:var(--flow);border-color:#bfe6e6;background:#f0fafa}
+  .lv-biz{color:var(--biz);border-color:#ddd0f7;background:#f8f4ff}
+  .lv-level{color:var(--ink-2);border-color:var(--line);background:#f7f8f9}
+  .lv-refactor{color:#8a3fd1;border-color:#e2ccf7;background:#faf3ff}
+
+  /* ========== 组合 ========== */
+  .combo{padding:20px 22px;margin-bottom:14px;border-left:3px solid var(--biz)}
+  .combo h3{margin-bottom:8px}
+  .combo .src{font-size:12.5px;color:var(--ink-3);margin-bottom:8px}
+  .combo p{font-size:14px;color:var(--ink-2)}
+  .combo p+p{margin-top:6px}
+
+  /* ========== Top3 ========== */
+  .plan{padding:20px 22px;margin-bottom:16px}
+  .plan-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .rank{
+    width:32px;height:32px;border-radius:9px;background:var(--ink);color:#fff;
+    display:grid;place-items:center;font-weight:700;font-size:14px;flex:0 0 auto;
+  }
+  .plan-head h3{flex:1;font-size:16px}
+  .score{font-size:20px;font-weight:800;color:var(--brand);font-variant-numeric:tabular-nums}
+  .bars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 22px;margin:6px 0 14px}
+  .bar-row{font-size:12.5px;color:var(--ink-2)}
+  .bar-top{display:flex;justify-content:space-between;margin-bottom:4px}
+  .bar{height:6px;border-radius:99px;background:#eceef1;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--brand);border-radius:99px}
+  .kv{display:grid;grid-template-columns:88px 1fr;gap:6px 12px;font-size:13.5px;padding-top:12px;border-top:1px solid var(--line)}
+  .kv dt{color:var(--ink-3);font-size:12.5px;font-weight:600}
+  .kv dd{margin:0;color:var(--ink-2)}
+  .false{color:#a4342a}
+
+  /* ========== 表格 ========== */
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card)}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:12px;letter-spacing:.04em;color:var(--ink-3);font-weight:700;background:#fafbfc}
+  tr:last-child td{border-bottom:0}
+
+  /* ========== 关键假设 ========== */
+  .assump{padding:18px 22px;background:#fffdf6;border:1px solid #f0e0c0;border-left:3px solid var(--warn);border-radius:var(--radius)}
+  .assump h3{color:var(--warn);margin-bottom:8px;font-size:14px}
+  .assump ol{margin:0;padding-left:18px}
+  .assump li{font-size:13.5px;color:#5f5236;margin-bottom:4px}
+  .assump .note{margin-top:8px;font-size:12.5px;color:var(--ink-3)}
+
+  /* ========== 缺口 ========== */
+  .gaps{padding:18px 22px;background:#fffaf0;border:1px solid #f3e2bd;border-radius:var(--radius)}
+  .gaps h3{color:var(--warn);margin-bottom:8px;font-size:14px}
+  .gaps li{font-size:13.5px;color:#6b5a34}
+  .gaps ul{margin:0;padding-left:18px}
+
+  .foot{margin-top:34px;text-align:center;font-size:12px;color:var(--ink-3)}
+
+  /* ========== 响应式 ========== */
+  @media (max-width:820px){
+    .page{padding:24px 14px 48px}
+    .conclusions{grid-template-columns:1fr}
+    .dims{grid-template-columns:1fr}
+    .bars{grid-template-columns:1fr}
+    h1{font-size:23px}
+  }
+
+  /* ========== 打印 ========== */
+  @media print{
+    body{background:#fff;font-size:11.5pt}
+    .page{max-width:none;padding:0}
+    .card,.dim,.plan,.combo,.assump,.gaps{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+    section{break-inside:avoid}
+    .hero{border-bottom-width:2px}
+  }
+</style>
+</head>
+<body>
+<!--
+  默认生成。按档位裁剪：
+  速览版：删除模块 2（结论）、4（现状解构）、8（验证与下一步）、9（90 天计划）；
+          模块 5 改为单列创意列表；模块 6 只保留 X1；模块 7 改为 Top3 一行表；
+          头部 meta 增加「主攻维度」chip。
+  标准版：删除模块 9。
+  深度版：全部保留。
+-->
+<div class="page">
+
+  <!-- ===== 模块 1：头部 ===== -->
+  <header class="card hero">
+    <div class="eyebrow">SCAMPER 七维创新方案</div>
+    <!-- 替换点：对象名 -->
+    <h1>职场新人 Excel 数据分析在线课</h1>
+    <div class="meta">
+      <span class="chip">类型 <b>内容 / 课程</b></span>
+      <span class="chip">痛点 <b>完课率 32%，退款率高</b></span>
+      <span class="chip">约束 <b>预算有限 · 无技术团队 · 1 个月见效</b></span>
+      <span class="chip">档位 <b>标准</b></span>
+      <span class="chip">日期 <b>2026-11-19</b></span>
+    </div>
+  </header>
+
+  <!-- ===== 模块 2：结论三条 ===== -->
+  <div class="conclusions">
+    <div class="concl">
+      <div class="k">最该改的维度</div>
+      <p>删除与修改：用户放弃发生在"开始"这一步，而不是"学不懂"。</p>
+    </div>
+    <div class="concl">
+      <div class="k">最值得做的一条</div>
+      <p>X1 分段解锁——每次只需投入 10 分钟，流失可提前 3 周发现。</p>
+    </div>
+    <div class="concl">
+      <div class="k">最大风险</div>
+      <p>单元切得过碎导致知识不连贯；以 4 周完课率是否达 45% 作为判断线。</p>
+    </div>
+  </div>
+
+  <!-- ===== 模块 3：关键假设 ===== -->
+  <div class="assump" style="margin-top:24px">
+    <h3>关键假设（待确认）</h3>
+    <ol>
+      <li>【推断】退款主要来自"学不完"而非内容质量 → 影响用户价值评分与 X1 排序。</li>
+      <li>【推断】现有后台支持按单元解锁、无需开发 → 影响可行性评分；若需开发，X1 可行性由 4 降到 2，Top3 会变。</li>
+    </ol>
+    <div class="note">修正任意一条后，我会重算评分并重排 Top3。</div>
+  </div>
+
+  <!-- ===== 模块 4：现状解构 ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">01</span><h2>现状解构</h2></div>
+    <div class="card status">
+      <div class="row">
+        <div class="tag">现状</div>
+        <p>60 分钟录播 + 课后作业 + 微信群答疑，学员自行安排进度。</p>
+      </div>
+      <div class="row">
+        <div class="tag fail">失效 1</div>
+        <p>单节 60 分钟，目标用户找不到整块时间，平均看到第 12 分钟退出。</p>
+      </div>
+      <div class="row">
+        <div class="tag fail">失效 2</div>
+        <p>作业没有反馈闭环，卡住就停，没人知道谁卡在哪一步。</p>
+      </div>
+      <div class="row">
+        <div class="tag fail">失效 3</div>
+        <p>购买动机是"升职加薪"，课程只交付知识，不交付可展示的工作成果。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 模块 5：七维矩阵 ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">02</span><h2>七维分析</h2></div>
+    <div class="dims">
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">S</span><h3>替代 Substitute</h3></div>
+        <ul>
+          <li><span class="idea-id">S1</span>用学员自己的工作表替代教学示例数据，学完即可用于当天工作。
+            <div class="tags"><span class="tag-lv lv-func">功能</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+          <li><span class="idea-id">S2</span>用往期学员卡点录屏替代讲师预设答疑，同类人的解法更易被采纳。
+            <div class="tags"><span class="tag-lv lv-func">功能</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">C</span><h3>结合 Combine</h3></div>
+        <ul>
+          <li><span class="idea-id">C1</span>作业自动生成可交的周报图表，学习成果直接变成工作产出。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+          <li><span class="idea-id">C2</span>与招聘平台打通，优秀作业进入企业人才池。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-refactor">重构</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">A</span><h3>适应 Adapt</h3></div>
+        <ul>
+          <li><span class="idea-id">A1</span>为通勤场景做 8 分钟音频版，把门槛从"整块时间"降到"碎片时间"。
+            <div class="tags"><span class="tag-lv lv-func">功能</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+          <li><span class="idea-id">A2</span>适配企业采购，按通过认证人数结算，付费方从个人变企业。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-refactor">重构</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">M</span><h3>修改 Modify</h3></div>
+        <ul>
+          <li><span class="idea-id">M1</span>60 分钟切 6 个 10 分钟单元，每单元一个小任务，降低启动成本。
+            <div class="tags"><span class="tag-lv lv-func">功能</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+          <li><span class="idea-id">M2</span>课程总量缩到 1/3，只保留工作中真用到的 20% 功能。
+            <div class="tags"><span class="tag-lv lv-func">功能</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">P</span><h3>他用 Put to other purposes</h3></div>
+        <ul>
+          <li><span class="idea-id">P1</span>把课程里的 20 个模板单独卖给不买课的企业，打开第二条收入线。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-refactor">重构</span></div>
+          </li>
+          <li><span class="idea-id">P2</span>章节切片成短视频引流，完整课承接，降低决策成本。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">E</span><h3>删除 Eliminate</h3></div>
+        <ul>
+          <li><span class="idea-id">E1</span>删除报名后人工审核，改为即时开通，开始时间从 2 天压到 5 分钟。
+            <div class="tags"><span class="tag-lv lv-flow">流程</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+          <li><span class="idea-id">E2</span>删除结业考试，改为每单元通过即解锁，奖励周期从 12 周缩到 1 周。
+            <div class="tags"><span class="tag-lv lv-flow">流程</span><span class="tag-lv lv-level">改良</span></div>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card dim">
+        <div class="dim-head"><span class="letter">R</span><h3>重排 / 逆向 Rearrange</h3></div>
+        <ul>
+          <li><span class="idea-id">R1</span>先给做不出来的真实任务，再按卡点推章节，从被动变主动。
+            <div class="tags"><span class="tag-lv lv-flow">流程</span><span class="tag-lv lv-refactor">重构</span></div>
+          </li>
+          <li><span class="idea-id">R2</span>从"先付费后学"逆转为"学完认证后付费"，风险转移到课程方。
+            <div class="tags"><span class="tag-lv lv-biz">商业</span><span class="tag-lv lv-refactor">重构</span></div>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 模块 6：跨维组合 ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">03</span><h2>跨维度组合</h2></div>
+    <div class="card combo">
+      <h3>X1 = 修改 + 删除：分段解锁</h3>
+      <div class="src">M1 单元切分 + E2 完成即解锁</div>
+      <p>每 10 分钟单元完成即解锁下一节，用户每次只需投入 10 分钟，每次都有可见进展。</p>
+      <p>单一维度做不到：只切单元不设解锁，用户仍会一次打开多节后放弃；只设解锁不切单元，门槛依旧过高。</p>
+    </div>
+    <div class="card combo">
+      <h3>X2 = 结合 + 他用：作业即产出</h3>
+      <div class="src">C1 作业生成周报 + P1 模板外售</div>
+      <p>学员的学习成果直接变成工作成果，课程方同时获得一条不依赖招生的企业收入线。</p>
+      <p>单一维度做不到：只做作业模板仍是教学动作，只卖模板则缺少可验证的使用场景。</p>
+    </div>
+  </section>
+
+  <!-- ===== 模块 7：Top3 方案卡 ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Top3 方案</h2></div>
+
+    <article class="card plan">
+      <div class="plan-head">
+        <span class="rank">1</span>
+        <h3>X1 分段解锁</h3>
+        <span class="score">4.25</span>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-top"><span>创新性</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>可行性</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>用户价值</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>成本效益</span><span>5</span></div>
+          <div class="bar"><i style="width:100%"></i></div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>评分依据</dt><dd>同类课少见解锁机制；现有后台可配置；直接针对流失点；零增量成本。</dd>
+        <dt>新颖性对照</dt><dd>已知：多数课只有章节进度条 ｜ 差异：把"看完"改成"完成即解锁"，进度与能力绑定。</dd>
+        <dt>下一步</dt><dd>本周选 1 门课改配置，灰度 20% 新学员。</dd>
+        <dt>所需资源</dt><dd>1 名运营，现有后台权限，0 预算。</dd>
+        <dt>风险</dt><dd>单元切分过碎导致知识不连贯。</dd>
+        <dt>证伪条件</dt><dd class="false">若 4 周内完课率未从 32% 升到 45%，则放弃分段解锁，转向一对一督学。</dd>
+      </dl>
+    </article>
+
+    <article class="card plan">
+      <div class="plan-head">
+        <span class="rank">2</span>
+        <h3>P1 模板单独售卖</h3>
+        <span class="score">3.75</span>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-top"><span>创新性</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>可行性</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>用户价值</span><span>3</span></div>
+          <div class="bar"><i style="width:60%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>成本效益</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>评分依据</dt><dd>课程方少有独立售卖；资产已存在；只覆盖企业客户；打包即可上线。</dd>
+        <dt>新颖性对照</dt><dd>已知：卖课附赠模板 ｜ 差异：模板独立定价，面向不买课的企业。</dd>
+        <dt>下一步</dt><dd>本月整理 5 个高频模板上架。</dd>
+        <dt>所需资源</dt><dd>1 名设计 + 1 名运营，约 2 周。</dd>
+        <dt>风险</dt><dd>模板脱离讲解后可用性下降。</dd>
+        <dt>证伪条件</dt><dd class="false">若 2 个月内企业订单不足 5 单，则收回独立售卖，改为课程附加包。</dd>
+      </dl>
+    </article>
+
+    <article class="card plan">
+      <div class="plan-head">
+        <span class="rank">3</span>
+        <h3>C1 作业生成周报</h3>
+        <span class="score">3.50</span>
+      </div>
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-top"><span>创新性</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>可行性</span><span>3</span></div>
+          <div class="bar"><i style="width:60%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>用户价值</span><span>3</span></div>
+          <div class="bar"><i style="width:60%"></i></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-top"><span>成本效益</span><span>4</span></div>
+          <div class="bar"><i style="width:80%"></i></div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>评分依据</dt><dd>作业即产出的设计少见；需一次模板改造；仅对需要写周报的岗位有效；改造量小。</dd>
+        <dt>新颖性对照</dt><dd>已知：课程提供作业模板 ｜ 差异：作业输出直接是职场交付物。</dd>
+        <dt>下一步</dt><dd>下月改 3 个单元作业。</dd>
+        <dt>所需资源</dt><dd>1 名教研 + 1 名设计。</dd>
+        <dt>风险</dt><dd>周报格式因公司而异，通用性不足。</dd>
+        <dt>证伪条件</dt><dd class="false">若试点班级作业提交率未提升 15%，则只保留 1 个通用模板。</dd>
+      </dl>
+    </article>
+  </section>
+
+  <!-- ===== 模块 8：验证与下一步 ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">05</span><h2>验证与下一步</h2></div>
+    <div class="card" style="padding:6px 0;overflow:hidden">
+      <table>
+        <thead>
+          <tr><th>方案</th><th>最小验证（≤2 周）</th><th>主指标</th><th>基线 → 目标</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>X1 分段解锁</td><td>1 门课灰度 20% 新学员</td><td>4 周完课率</td><td>32% → 45%</td></tr>
+          <tr><td>P1 模板外售</td><td>上架 5 个模板，投 2 个企业群</td><td>企业订单数</td><td>0 → 5 单 / 2 月</td></tr>
+          <tr><td>C1 作业周报</td><td>3 个单元试点 1 个班</td><td>作业提交率</td><td>基线待测 → +15%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="padding:18px 22px;margin-top:14px">
+      <h3 style="margin-bottom:8px">下一步</h3>
+      <dl class="kv" style="border-top:0;padding-top:0">
+        <dt>本周</dt><dd>完成 X1 配置与灰度名单；确定试点班级。</dd>
+        <dt>本月</dt><dd>P1 模板打包上架；C1 完成 3 个单元改造。</dd>
+        <dt>季度内</dt><dd>根据 X1 数据决定是否全量，并启动 A2 企业按认证付费的可行性测算。</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ===== 模块 9：90 天计划（仅深度版） ===== -->
+  <section>
+    <div class="sec-head"><span class="sec-num">06</span><h2>90 天计划</h2></div>
+    <div class="card" style="padding:6px 0;overflow:hidden">
+      <table>
+        <thead>
+          <tr><th>阶段</th><th>时间</th><th>目标</th><th>关键动作</th><th>验收标准</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>验证</td><td>第 1-2 周</td><td>验证 X1 是否能降低启动门槛</td>
+            <td>1 门课灰度 20% 新学员；记录连续解锁率</td><td>完课率达到 40%</td>
+          </tr>
+          <tr>
+            <td>试点</td><td>第 3-6 周</td><td>验证 P1 的企业需求是否真实</td>
+            <td>5 个模板上架；触达 2 个企业群</td><td>获得 5 个企业订单</td>
+          </tr>
+          <tr>
+            <td>放大</td><td>第 7-12 周</td><td>决定是否全量并测算 A2</td>
+            <td>全量上线 X1；启动企业按认证付费测算</td><td>完课率稳定在 45% 以上</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== 模块 10：信息缺口 ===== -->
+  <section>
+    <div class="gaps">
+      <h3>信息缺口与待核实项</h3>
+      <ul>
+        <li>待核实：平均退出时间"第 12 分钟"来自同类课程经验，需用后台播放数据确认。</li>
+        <li>待核实：企业客户对模板的独立付费意愿，尚未验证。</li>
+        <li>缺口：月度退款率与退款原因分布 —— 补充后可重排 Top3。</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="foot">本方案基于 SCAMPER 七维法生成 ｜ 已过六条质量闸门 ｜ 推断内容已标注</div>
+</div>
+</body>
+</html>
